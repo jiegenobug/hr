@@ -1,13 +1,17 @@
-// import request from '@/utils/request'
+import request from '@/utils/request'
 
-export function login (data) {
+export function login(data) {
+    return request({
+        url: '/sys/login',
+        methods: 'post',
+        data
+    })
+}
+
+export function getInfo(token) {
 
 }
 
-export function getInfo (token) {
-
-}
-
-export function logout () {
+export function logout() {
 
 }
