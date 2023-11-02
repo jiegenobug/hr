@@ -3,7 +3,6 @@
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form"
                  auto-complete="on" label-position="left">
             <div class="title-container">
-                <!-- <h3 class="title">Login Form</h3> -->
                 <h3 class="title">
                     <img src="@/assets/common/login-logo.png" alt="" />
                 </h3>
@@ -34,7 +33,7 @@
                        @click.native.prevent="handleLogin">登录</el-button>
             <div class="tips">
                 <span style="margin-right: 20px">账号: 13800000002</span>
-                <span> 密码: 123456</span>
+                <span> 密码: 888itcast.CN764%...</span>
             </div>
         </el-form>
     </div>
@@ -43,7 +42,6 @@
 <script>
 import { validMobile } from "@/utils/validate";
 import { mapActions } from "vuex";
-import { login } from "@/api/user";
 
 export default {
     name: "Login",
@@ -62,7 +60,7 @@ export default {
         return {
             loginForm: {
                 mobile: "13800000002",
-                password: "123456",
+                password: "888itcast.CN764%...",
             },
             loginRules: {
                 mobile: [
@@ -85,8 +83,8 @@ export default {
                     {
                         trigger: "blur",
                         min: 6,
-                        max: 16,
-                        message: "密码长度在6-16位之间",
+                        max: 20,
+                        message: "密码长度在6-20位之间",
                     },
                 ],
             },
@@ -117,14 +115,16 @@ export default {
         },
         handleLogin() {
             this.$refs.loginForm.validate(async (isOk) => {
-                try {
-                    this.loading = true;
-                    await login(this.loginForm);
-                    this.$router.push("/");
-                } catch (error) {
-                    console.log(error);
-                } finally {
-                    this.loading = false;
+                if (isOk) {
+                    try {
+                        this.loading = true;
+                        await this.login(this.loginForm);
+                        this.$router.push("/");
+                    } catch (error) {
+                        console.log(error);
+                    } finally {
+                        this.loading = false;
+                    }
                 }
             });
         },
