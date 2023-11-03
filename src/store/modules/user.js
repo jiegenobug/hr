@@ -31,6 +31,10 @@ const actions = {
         const baseResult = { ...result, ...baseInfo } // 合并两个接口返回的用户信息结果
         context.commit('setUserInfo', baseResult)
         return baseResult // 这里的return为后期做权限的时候埋下伏笔
+    },
+    logout(context) {
+        context.commit('removeToken')
+        context.commit('removeUserInfo')
     }
 }
 export default {

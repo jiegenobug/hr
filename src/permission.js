@@ -1,6 +1,5 @@
 import router from '@/router'
 import store from '@/store'
-import { getUserInfo } from './store/modules/user'
 import nProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 
