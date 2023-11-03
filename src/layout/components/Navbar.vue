@@ -11,7 +11,7 @@
         <div class="right-menu">
             <el-dropdown class="avatar-container" trigger="click">
                 <div class="avatar-wrapper">
-                    <img src="@/assets/common/bigUserHeader.png" class="user-avatar">
+                    <img :src="staffPhoto" class="user-avatar">
                     <span class="name">{{ username }}</span>
                     <i class="el-icon-caret-bottom" />
                 </div>
@@ -42,7 +42,7 @@ export default {
         Hamburger,
     },
     computed: {
-        ...mapGetters(["sidebar", "avatar", "username"]),
+        ...mapGetters(["sidebar", "avatar", "username", "staffPhoto"]),
     },
     methods: {
         toggleSideBar() {
