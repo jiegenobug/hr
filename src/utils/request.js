@@ -1,7 +1,7 @@
 import store from '@/store'
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { getToken } from './auth'
+// import { getToken } from './auth'
 const service = axios.create({
     baseURL: process.env.VUE_APP_BASE_API,
     timeout: 5000 // 设置超时时间
@@ -10,7 +10,7 @@ const service = axios.create({
 service.interceptors.request.use(
     config => {
         if (store.getters.token) {
-            config.headers['hrsaas-ihrm-token'] = getToken()
+            config.headers['Authorization'] = `Bearar ${store.getters.token}`
         }
         return config
     }, error => {
