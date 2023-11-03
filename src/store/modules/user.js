@@ -1,4 +1,4 @@
-import { getToken, setToken, removeToken } from "@/utils/auth"
+import { getToken, setToken, removeToken, setTimeStamp } from "@/utils/auth"
 import { getUserDetailById, getUserInfo, login } from '@/api/user'
 const state = {
     token: getToken(), // 设置token为共享状态
@@ -23,7 +23,8 @@ const mutations = {
 const actions = {
     async login(context, data) {
         const result = await login(data)
-        context.commit('setToken', result)
+        context.commit('setToken', result) // 把成功取到的token存入vuex和缓存
+        setTimeStamp() // 把当前时间戳存入缓存
     },
     async getUserInfo(context) {
         const result = await getUserInfo()
