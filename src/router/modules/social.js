@@ -12,6 +12,7 @@ export default {
             // 路由元信息，可以放任何内容
             meta: {
                 title: '社保', // 左侧导航的文字
+                icon: 'table'
             }
         }
     ]
