@@ -14,28 +14,41 @@
 </template>
   
 <script>
+import { getDepartments } from "@/api/departments";
 import treeTools from "./components/tree-tools.vue";
+import { tranListToTreeData } from "@/utils";
 export default {
     components: { treeTools },
     data() {
         return {
             company: {
-                name: "江苏传智播客教育科技股份有限公司",
-                manager: "负责人",
+                // name: "",
+                // manager: "",
             },
             departs: [
-                {
-                    name: "总裁办",
-                    manager: "曹操",
-                    children: [{ name: "董事会", manager: "曹丕" }],
-                },
-                { name: "行政部", manager: "刘备" },
-                { name: "人事部", manager: "孙权" },
+                // {
+                //     name: "总裁办",
+                //     manager: "曹操",
+                //     children: [{ name: "董事会", manager: "曹丕" }],
+                // },
+                // { name: "行政部", manager: "刘备" },
+                // { name: "人事部", manager: "孙权" },
             ],
             defaultProps: {
                 label: "name", // 表示 从这个属性显示内容
             },
         };
+    },
+    created() {
+        this.getDepartments();
+    },
+    methods: {
+        async getDepartments() {
+            const result = await getDepartments();
+            this.company = { name: result.companyName, manager: "负责人" };
+            this.departs = tranListToTreeData(result.depts, "");
+            console.log(this.departs);
+        },
     },
 };
 </script>
